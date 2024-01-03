@@ -1,6 +1,8 @@
 ﻿using _341_Backend.Application.Abstracts;
 using _341_Backend.Persistence.Concrete;
+using _341_Backend.Persistence.Context;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,7 @@ namespace _341_Backend.Persistence
     {
         public static void AddPersistenceServices(this IServiceCollection services)
         {
-            services.AddSingleton<IUserService, UserService>();
+            services.AddDbContext<_341DbContext>(options => options.UseNpgsql("User ID=postgres;Password=123456;Host=localhost;Port=5432;Database=CMPE341;"));
         }
     }
 }
